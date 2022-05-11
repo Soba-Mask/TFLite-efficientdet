@@ -1,6 +1,7 @@
 import glob
 import cv2
 import tensorflow as tf
+import sys
 
 import numpy as np
 #from tflite_runtime.interpreter import Interpreter
@@ -78,10 +79,11 @@ def main():
     model_path = './efficientdet-lite2_reg.tflite'
 
     DETECTION_THRESHOLD = 0.3
+    num_threads = int(sys.argv[1])
    
     image_file = './bed2.jpg'
     # Load the TFLite model
-    interpreter = tf.lite.Interpreter(model_path=model_path,  num_threads=2)
+    interpreter = tf.lite.Interpreter(model_path=model_path,  num_threads=num_threads)
     #interpreter = Interpreter(model_path=model_path, num_threads=1)
     interpreter.allocate_tensors()
 
